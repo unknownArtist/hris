@@ -9,8 +9,8 @@ class Dashboard_Form_Login extends Zend_Form
         $this->setAction('')
              ->setAttrib('id', 'formLogin');
 
-        $loginname = new Zend_Form_Element_Text('userName');
-        $loginname->setLabel('Username')
+        $userName = new Zend_Form_Element_Text('userName');
+        $userName->setLabel('Username')
         	 ->setRequired(TRUE);
 
        $password = new Zend_Form_Element_Password('password');
@@ -21,7 +21,7 @@ class Dashboard_Form_Login extends Zend_Form
 
         $this->addElements(array(
 
-        	$loginname,
+        	$userName,
         	$password,
         	$submitlogin,
 
