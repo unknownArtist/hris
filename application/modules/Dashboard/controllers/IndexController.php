@@ -32,6 +32,7 @@ class Dashboard_IndexController extends Zend_Controller_Action
                     $storage = new Zend_Auth_Storage_Session();
                     $storage->write($authAdapter->getResultRowObject(array('memberID', 'userName','role')));
                     $this->view->successMsg = "you are logged in";
+                    $this->_redirect('user');
 
                 } else {
                     $this->view->errorMessage = "Invalid username or password. Please try again.";
