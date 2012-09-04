@@ -3,4 +3,5 @@ LICENSE.txt
 README.txt
 demos/
 extras/documentation
-
+/library/Zend
+/application/configs/application.ini
