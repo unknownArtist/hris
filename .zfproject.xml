@@ -52,6 +52,7 @@
           <layoutsDirectory enabled="false"/>
           <modelsDirectory>
             <modelFile modelName="Login"/>
+            <modelFile modelName="Acl"/>
           </modelsDirectory>
           <viewsDirectory>
             <viewScriptsDirectory>
@@ -59,6 +60,19 @@
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
+            <viewHelpersDirectory/>
+            <viewFiltersDirectory/>
+          </viewsDirectory>
+        </moduleDirectory>
+        <moduleDirectory moduleName="user">
+          <apisDirectory enabled="false"/>
+          <configsDirectory enabled="false"/>
+          <controllersDirectory/>
+          <formsDirectory enabled="false"/>
+          <layoutsDirectory enabled="false"/>
+          <modelsDirectory/>
+          <viewsDirectory>
+            <viewScriptsDirectory/>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
           </viewsDirectory>
