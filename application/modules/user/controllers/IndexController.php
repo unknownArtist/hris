@@ -11,7 +11,10 @@ class User_IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
-       $this->view->Message ="Welcome User!";
+      // $users = new User_Model_Employee();
+    $userData = new Zend_Session_Namespace('Default');
+  
+    $this->view->Message ="Good Day  ". $userData->userName."!";
     }
 
 

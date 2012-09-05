@@ -22,17 +22,22 @@ class Dashboard_IndexController extends Zend_Controller_Action
             if($form->isValid($_POST)){
                 $data = $form->getValues();
                 $auth = Zend_Auth::getInstance();
-                $authAdapter = new Zend_Auth_Adapter_DbTable($members->getAdapter(),'members');
+                $authAdapter = new Zend_Auth_Adapter_DbTable($members->getAdapter(),'users');
                 $authAdapter->setIdentityColumn('userName')
                             ->setCredentialColumn('password');
                 $authAdapter->setIdentity($data['userName'])
                             ->setCredential($data['password']);
                 $result = $auth->authenticate($authAdapter);
                 if($result->isValid()){
-                    $storage = new Zend_Auth_Storage_Session();
-                    $storage->write($authAdapter->getResultRowObject(array('memberID', 'userName','role')));
+                    // $storage = new Zend_Auth_Storage_Session();
+                    // $storage->write($authAdapter->getResultRowObject(array('memberID', 'userName','role')));
+
+                    $userData = new Zend_Session_Namespace('Default');
+                    //$userData->userID = $data['userID'];
+                    $userData->userName = $data['userName'];
                     $this->view->successMsg = "you are logged in";
-                    $this->_redirect('user');
+
+                   $this->_redirect('user');
 
                 } else {
                     $this->view->errorMessage = "Invalid username or password. Please try again.";
@@ -43,6 +48,7 @@ class Dashboard_IndexController extends Zend_Controller_Action
 
 
     }
+
 
 
 }
