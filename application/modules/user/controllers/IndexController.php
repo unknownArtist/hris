@@ -11,10 +11,12 @@ class User_IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
-      // $users = new User_Model_Employee();
-    $userData = new Zend_Session_Namespace('Default');
-  
-    $this->view->Message ="Good Day  ". $userData->userName."!";
+    $users_id = Zend_Auth::getInstance()->getIdentity()->id;
+    $userName = Zend_Auth::getInstance()->getIdentity()->userName;
+
+    $this->view->Message ="Good Day  ". $userName."!";
+    
+
     }
 
 
