@@ -38,13 +38,99 @@
           </a>
           <a class="brand" href="#">HRIS</a>
           <div class="nav-collapse collapse">
-          <?php  if(Zend_Auth::getInstance()->hasIdentity()):?>
+          
           <ul class="nav">  
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+             <li class="dropdown">
+                      <a id="drop1" data-target="#" href="/page.html" role="button" class="dropdown-toggle" data-toggle="dropdown">Time Keeping<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a tabindex="-1" href="http://google.com">Apply Punch Alteration</a></li>
+                        <li><a tabindex="-1" href="#anotherAction">Punch Alteration History</a></li>
+                        <li><a tabindex="-1" href="#">Punch History</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="#">Separated link</a></li>
+                      </ul>
+              </li>
             </ul> 
-          <?php endif; ?>
+
+
+            <ul class="nav">  
+             <li class="dropdown">
+                      <a id="drop1" data-target="#" href="/page.html" role="button" class="dropdown-toggle" data-toggle="dropdown">Approval<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a tabindex="-1" href="http://google.com">Pending Approvals</a></li>
+                        <li><a tabindex="-1" href="#anotherAction">Approval History</a></li>
+            </ul>
+              </li>
+            </ul> 
+
+
+            <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        <li><a tabindex="-1" href="#">Edit Profile</a></li>
+                        <li><a tabindex="-1" href="#">Change Password</a></li>
+                        <li><a tabindex="-1" href="#">Logout</a></li>
+                        
+                      </ul>
+                    </li>
+            </ul>
+
+            <ul class="nav">  
+             <li class="dropdown">
+                      <a id="drop1" data-target="#" href="/page.html" role="button" class="dropdown-toggle" data-toggle="dropdown">Overtime<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a tabindex="-1" href="http://google.com">Overtime History</a></li>
+                        <li><a tabindex="-1" href="#anotherAction">Apply Overtime</a></li>
+                       
+                      </ul>
+              </li>
+            </ul> 
+            
+            <ul class="nav">  
+             <li class="dropdown">
+                      <a id="drop1" data-target="#" href="/page.html" role="button" class="dropdown-toggle" data-toggle="dropdown">Leaves<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a tabindex="-1" href="http://google.com">Leave History</a></li>
+                        <li><a tabindex="-1" href="#anotherAction">Apply Leave</a></li>
+                       
+                      </ul>
+              </li>
+            </ul> 
+
+            <ul class="nav">  
+             <li class="dropdown">
+                      <a id="drop1" data-target="#" href="/page.html" role="button" class="dropdown-toggle" data-toggle="dropdown">Payslips<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a tabindex="-1" href="http://google.com">Payslip History</a></li>
+                      </ul>
+              </li>
+            </ul> 
+
+            <ul class="nav">  
+             <li class="dropdown">
+                      <a id="drop1" data-target="#" href="/page.html" role="button" class="dropdown-toggle" data-toggle="dropdown">Accounting<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a tabindex="-1" href="http://google.com">Payslip History</a></li>
+                      </ul>
+              </li>
+            </ul> 
+
+            <ul class="nav">  
+             <li class="dropdown">
+                      <a id="drop1" data-target="#" href="/page.html" role="button" class="dropdown-toggle" data-toggle="dropdown">Accounting<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a tabindex="-1" href="http://google.com">Payroll Generation</a></li>
+                        <li><a tabindex="-1" href="http://google.com">Payroll History</a></li>
+                        <li><a tabindex="-1" href="http://google.com">Payroll Period</a></li>
+                        <li><a tabindex="-1" href="http://google.com">Payroll Variables</a></li>
+                        <li><a tabindex="-1" href="http://google.com">Government Reports</a></li>
+                        <li><a tabindex="-1" href="http://google.com">Time & Attendance</a></li>
+                      </ul>
+              </li>
+            </ul> 
+         
+         
           </div><!--/.nav-collapse -->
         </div>
       </div>
