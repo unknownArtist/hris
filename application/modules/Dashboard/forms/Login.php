@@ -18,6 +18,7 @@ class Dashboard_Form_Login extends Zend_Form
         	 ->setRequired(TRUE);
         	 
         $submitlogin = new Zend_Form_Element_Submit('login');
+        $submitlogin->setOptions(array('class'=>'btn-small'));
 
         $this->addElements(array(
 
