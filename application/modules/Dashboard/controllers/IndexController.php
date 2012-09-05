@@ -10,11 +10,9 @@ class Dashboard_IndexController extends Zend_Controller_Action
 
     }
    
-
     public function indexAction()
     {
-
-        
+       
         $members = new Dashboard_Model_Login();
 
         $form = new Dashboard_Form_Login();
@@ -39,9 +37,9 @@ class Dashboard_IndexController extends Zend_Controller_Action
                     $storage->write($authAdapter->getResultRowObject(array('id', 'userName','role')));
 
 
-                    $this->view->successMsg = "you are logged in";
+                    //$this->view->successMsg = "you are logged in";
 
-                    $this->_redirect('user');
+                    $this->_redirect('user/index');
 
                 } else {
                     $this->view->errorMessage = "Invalid username or password. Please try again.";
