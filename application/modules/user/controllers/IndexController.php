@@ -15,7 +15,7 @@ class User_IndexController extends Zend_Controller_Action
     $userName = Zend_Auth::getInstance()->getIdentity()->userName;
     $this->view->Message ="Good Day  ". $userName."!";
 
-    $emp = new User_Model_Employee();
+    $emp = new user_Model_Employee();
     $where = "users_id =". $users_id;
     $emp_data = $emp->fetchRow($where)->toArray(); 
     $this->view->name = $emp_data['firstName'];

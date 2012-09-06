@@ -18,38 +18,33 @@ class Dashboard_IndexController extends Zend_Controller_Action
 
          $form = new Dashboard_Form_Login();
          $this->view->form = $form;
-
+         $authAdapter = $this->getAuthAdapter();
          if ($this->getRequest()->isPost()) 
             {
                 $formData = $this->getRequest()->getPost();
                 
                 if ($form->isValid($formData)) 
                 {
-                $data = $form->getValues();
-
-                  $username = $form->getValue('userName');
-                  $where = "userName = '$username'";
-                  $u_name = $members->fetchRow($where)->toArray(); 
-
-                $auth = Zend_Auth::getInstance();
-                $authAdapter = new Zend_Auth_Adapter_DbTable($members->getAdapter(),'users');
-                $authAdapter->setIdentityColumn('userName')
-                            ->setCredentialColumn('password');
-                $authAdapter->setIdentity($data['userName'])
-                            ->setCredential($data['password']);
-                $result = $auth->authenticate($authAdapter);
-                if($result->isValid()){
-                    $storage = new Zend_Auth_Storage_Session();
-                    $storage->write($authAdapter->getResultRowObject(array('id', 'userName','role')));
-
-
-                    //$this->view->successMsg = "you are logged in";
-
-                    $this->_redirect('user/index');
-
-                } else {
-                    $this->view->errorMessage = "Invalid username or password. Please try again.";
-                }         
+                
+                    $user    = $form->getValue('userName');
+                    $password = $form->getValue('password');
+                    
+                         $authAdapter->setIdentity($user)
+                                     ->setCredential($password);
+                
+                    $auth = Zend_Auth::getInstance();
+                    $result = $auth->authenticate($authAdapter);
+                 
+                             if($result->isValid())
+                               {
+                                   $auth->getStorage()->write($authAdapter->getResultRowObject(array('id', 'userName','role')));
+                                   $this->_redirect('user');
+                               }
+                               else
+                                {
+                                   $form->populate($formData);
+                                   $this->view->SignInError = "Invalid Username or Password";
+                                }        
             }else
             {
                 $form->populate($formData);
@@ -61,10 +56,21 @@ class Dashboard_IndexController extends Zend_Controller_Action
 
     }
 
+    private function getAuthAdapter()
+    {
+        $auth = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter());
+        $auth->setTableName('users')
+             ->setIdentityColumn('userName')
+             ->setCredentialColumn('password');
+        
+        return $auth;
+    }
+
+
     public function logoutAction()
     {
         Zend_Auth::getInstance()->clearIdentity();
-        $this->_redirect('Dashboard/index');
+        $this->_redirect('Dashboard');
     }
 
 

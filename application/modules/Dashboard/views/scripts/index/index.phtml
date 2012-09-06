@@ -5,12 +5,10 @@
         </div>
         <div class="span4">
           <h2>Heading</h2>
-          <?php  echo $this->form;
-				       if(isset($this->successMsg)); 
-				        echo $this->successMsg;
-		 	 
-		     		   if(isset($this->errorMessage))
-				   		echo $this->errorMessage;
+          <?php  		
+           echo $this->form; 	 
+		     		   if(isset($this->SignInError))
+				   		echo $this->SignInError;
 
 				   ?>
        </div>
