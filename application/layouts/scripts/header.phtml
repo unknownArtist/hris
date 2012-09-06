@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+
     <title>Bootstrap, from Twitter</title>
+
+    <title>HRIS</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -38,6 +42,7 @@
           </a>
           <a class="brand" href="#">HRIS</a>
           <div class="nav-collapse collapse">
+
           
           <ul class="nav">  
              <li class="dropdown">
@@ -70,7 +75,7 @@
                       <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
                         <li><a tabindex="-1" href="#">Edit Profile</a></li>
                         <li><a tabindex="-1" href="#">Change Password</a></li>
-                        <li><a tabindex="-1" href="#">Logout</a></li>
+                        <li><a tabindex="-1" href="/Dashboard/index/logout">Logout</a></li>
                         
                       </ul>
                     </li>
@@ -107,14 +112,7 @@
               </li>
             </ul> 
 
-            <ul class="nav">  
-             <li class="dropdown">
-                      <a id="drop1" data-target="#" href="/page.html" role="button" class="dropdown-toggle" data-toggle="dropdown">Accounting<b class="caret"></b></a>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                        <li><a tabindex="-1" href="http://google.com">Payslip History</a></li>
-                      </ul>
-              </li>
-            </ul> 
+           
 
             <ul class="nav">  
              <li class="dropdown">
@@ -129,11 +127,30 @@
                       </ul>
               </li>
             </ul> 
-         
-         
+
+             <ul class="nav">  
+             <li class="dropdown">
+                      <a id="drop1" data-target="#" href="/page.html" role="button" class="dropdown-toggle" data-toggle="dropdown">HR<b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a tabindex="-1" href="http://google.com">Employee Settings</a></li>
+                        <li><a tabindex="-1" href="http://google.com">Company Settings</a></li>
+                        <li><a tabindex="-1" href="http://google.com">Announcements</a></li>
+                      </ul>
+              </li>
+            </ul> 
+
+          <?php  if(Zend_Auth::getInstance()->hasIdentity()):?>
+          <ul class="nav">  
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul> 
+          <?php endif; ?>
+
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
+
 
 <div class="container">
