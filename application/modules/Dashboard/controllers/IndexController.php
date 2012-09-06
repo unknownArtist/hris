@@ -13,8 +13,8 @@ class Dashboard_IndexController extends Zend_Controller_Action
     public function indexAction()
     {
 
-        echo "hello";
-        // $members = new Dashboard_Model_Login();
+       
+         $members = new Dashboard_Model_Login();
 
          $form = new Dashboard_Form_Login();
          $this->view->form = $form;

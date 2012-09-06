@@ -20,6 +20,12 @@ class User_IndexController extends Zend_Controller_Action
     $emp_data = $emp->fetchRow($where)->toArray(); 
     $this->view->name = $emp_data['firstName'];
 
+   $where ="ID =". $emp_data['teams_ID'];
+   $teams = new User_Model_Teams();
+   $t_data = $teams->fetchRow($where)->toArray(); 
+   $this->view->team = $t_data['name'];
+
+
     $db = Zend_Db::factory('Pdo_Mysql', array(
                 'host'     => 'localhost',
                 'username' => 'root',
@@ -27,27 +33,40 @@ class User_IndexController extends Zend_Controller_Action
                 'dbname'   => 'hris'
             ));
  
- 
 
 
-    $sql = "select e.firstName from employee e INNER JOIN departmentmanagers dm ON e.departments_id = dm.departments_id Where e.users_id = ".$users_id;
+    $sql = "select dm.employee_ID
+            FROM
+            employee e
+            INNER JOIN departmentmanagers dm ON e.departments_id = dm.departments_id
+            WHERE e.users_id =".$users_id;
              
+			      $m_data = $db->fetchRow($sql);
+            $manager = $m_data['employee_ID'];
 
-			$m_data = $db->fetchRow($sql);
-            $manager = $m_data['firstName'];
-			
-  	 	    $this->view->manager = $manager;
+    $sql2 = "select e.firstName
+            FROM
+            employee e
+            INNER JOIN departmentmanagers dm ON e.ID = dm.employee_ID
+            WHERE e.ID =".$manager;
+		        
+            $mgr_data = $db->fetchRow($sql2);
+            $mngr = $mgr_data['firstName'];
+  	 	      $this->view->mngr = $mngr;
 
   	$qry = "select st.shiftIn, st.shiftOut, st.day from shifttiming st INNER JOIN shift s ON st.id = s.id";
 
   			$s_data = $db->fetchRow($qry);
   			 $s_in = $s_data['shiftIn'];
-  			$s_out = $s_data['shiftOut'];
-  			$s_day = $s_data['day'];
+  			 $s_out = $s_data['shiftOut'];
+  			 $s_day = $s_data['day'];
   	     
   	 	    $this->view->s_in = $s_in;
   	 	    $this->view->s_out = $s_out;
   	 	    $this->view->s_day = $s_day;
+
+
+         
 
 
     }
