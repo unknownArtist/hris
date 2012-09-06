@@ -23,7 +23,7 @@ class User_IndexController extends Zend_Controller_Action
     $db = Zend_Db::factory('Pdo_Mysql', array(
                 'host'     => 'localhost',
                 'username' => 'root',
-                'password' => '',
+                'password' => 'brownquick321',
                 'dbname'   => 'hris'
             ));
  

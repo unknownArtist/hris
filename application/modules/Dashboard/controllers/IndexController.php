@@ -9,17 +9,22 @@ class Dashboard_IndexController extends Zend_Controller_Action
        
 
     }
-   
+
     public function indexAction()
     {
 
-        echo "hello";
-        // $members = new Dashboard_Model_Login();
+       
+         $members = new Dashboard_Model_Login();
 
          $form = new Dashboard_Form_Login();
          $this->view->form = $form;
-        if($this->getRequest()->isPost()){
-            if($form->isValid($_POST)){
+
+         if ($this->getRequest()->isPost()) 
+            {
+                $formData = $this->getRequest()->getPost();
+                
+                if ($form->isValid($formData)) 
+                {
                 $data = $form->getValues();
 
               $username = $form->getValue('userName');
@@ -45,14 +50,25 @@ class Dashboard_IndexController extends Zend_Controller_Action
                 } else {
                     $this->view->errorMessage = "Invalid username or password. Please try again.";
                 }         
+            }else
+            {
+                $form->populate($formData);
             }
+
         }
       
 
 
     }
 
+    public function logoutAction()
+    {
+        Zend_Auth::getInstance()->clearIdentity();
+        $this->_redirect('Dashboard/index');
+    }
 
 
 }
+
+
 
