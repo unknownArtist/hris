@@ -27,9 +27,9 @@ class Dashboard_IndexController extends Zend_Controller_Action
                 {
                 $data = $form->getValues();
 
-              $username = $form->getValue('userName');
-              $where = "userName = '$username'";
-              $u_name = $members->fetchRow($where)->toArray(); 
+                  $username = $form->getValue('userName');
+                  $where = "userName = '$username'";
+                  $u_name = $members->fetchRow($where)->toArray(); 
 
                 $auth = Zend_Auth::getInstance();
                 $authAdapter = new Zend_Auth_Adapter_DbTable($members->getAdapter(),'users');
