@@ -39,6 +39,26 @@ class Dashboard_IndexController extends Zend_Controller_Action
                                {
                                    $auth->getStorage()->write($authAdapter->getResultRowObject(array('id', 'userName','role')));
                                    
+                                     $users_id = Zend_Auth::getInstance()->getIdentity()->id;
+    
+                                            $emp = new User_Model_Employee();
+                                            $where = "users_id =". $users_id;
+                                            $emp_data = $emp->fetchRow($where)->toArray(); 
+                                            $emp_ID = $emp_data['ID'];
+
+                                              $punches = new User_Model_Timekeeping();
+                                            
+                                            // $punches = new user_Model_Timekeeping();
+                                            $dd = new Zend_Date();
+
+                                              $data = array(
+                                                //"punchIn" => $dd->get('YYYY-MM-dd HH:mm:ss'),
+                                                "employee_ID" => $emp_ID
+                                                 );
+                                         
+                                              $punches->insert($data);
+
+
                                    $this->_redirect('User');
                                }
                                else

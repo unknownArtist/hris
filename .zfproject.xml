@@ -15,6 +15,9 @@
         <controllerFile controllerName="Hris">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Leave">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory>
@@ -38,16 +41,20 @@
               <actionMethod actionName="uploadLogo"/>
               <actionMethod actionName="companySettings"/>
               <actionMethod actionName="holidayConfiguration"/>
+              <actionMethod actionName="addHoliday"/>
+              <actionMethod actionName="approval"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory>
             <formFile formName="AddEmployee"/>
             <formFile formName="BrandCompInfo"/>
             <formFile formName="CompanyLogo"/>
+            <formFile formName="AddHolidayForm"/>
           </formsDirectory>
           <layoutsDirectory enabled="false"/>
           <modelsDirectory>
             <modelFile modelName="Company"/>
+            <modelFile modelName="AddholidayModel"/>
           </modelsDirectory>
           <viewsDirectory>
             <viewScriptsDirectory>
@@ -71,6 +78,12 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Hris">
                 <viewScriptFile forActionName="holidayConfiguration"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Hris">
+                <viewScriptFile forActionName="addHoliday"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Hris">
+                <viewScriptFile forActionName="approval"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -114,8 +127,13 @@
             <controllerFile controllerName="Index">
               <actionMethod actionName="index"/>
             </controllerFile>
+            <controllerFile controllerName="Leave">
+              <actionMethod actionName="index"/>
+            </controllerFile>
           </controllersDirectory>
-          <formsDirectory enabled="false"/>
+          <formsDirectory>
+            <formFile formName="Applyleave"/>
+          </formsDirectory>
           <layoutsDirectory enabled="false">
             <layoutScriptsDirectory enabled="false"/>
           </layoutsDirectory>
@@ -123,6 +141,9 @@
           <viewsDirectory>
             <viewScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Leave">
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
@@ -140,6 +161,9 @@
             <viewScriptFile forActionName="error"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Hris">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Leave">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>

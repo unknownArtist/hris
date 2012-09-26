@@ -50,8 +50,9 @@ class Admin_HrisController extends Zend_Controller_Action
         
         
         
-       }
-}
+       
+    
+    }
 
     public function uploadLogoAction()
     {
@@ -89,8 +90,36 @@ class Admin_HrisController extends Zend_Controller_Action
         // action body
     }
 
+    public function addHolidayAction()
+    {
+        $form = new Admin_Form_AddHolidayForm();
+        $addholidayinsert = new Admin_Model_AddholidayModel();
+
+        $this->view->form = $form;
+
+         if($this->getRequest()->isPost())
+        {
+             $formData = $this->getRequest()->getPost();
+                
+                if ($form->isValid($formData)) 
+                {
+                    $addholidayinsert->insert($form->getValues());
+                    $this->view->successMsg = "Holiday Added";
+                }
+        
+    }
+
+    public function approvalAction()
+    {
+        // action body
+    }
+
 
 }
+
+
+
+
 
 
 

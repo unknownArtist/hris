@@ -17,7 +17,7 @@ class User_IndexController extends Zend_Controller_Action
     $this->view->Message ="Good Day  ". $userName."!";
 
 //displaying employee's name
-    $emp = new user_Model_Employee();
+    $emp = new User_Model_Employee();
     $where = "users_id =". $users_id;
     $emp_data = $emp->fetchRow($where)->toArray(); 
     $this->view->name = $emp_data['firstName'];
@@ -25,7 +25,7 @@ class User_IndexController extends Zend_Controller_Action
 
 //displaying team's name
    $where ="ID =". $emp_data['teams_ID'];
-   $teams = new user_Model_Teams();
+   $teams = new User_Model_Teams();
    $t_data = $teams->fetchRow($where)->toArray(); 
    $this->view->team = $t_data['name'];
 //.................end....................
@@ -67,12 +67,8 @@ class User_IndexController extends Zend_Controller_Action
     $this->view->name = $emp_data['firstName'];
 
   
- 
- 
 
-
-    $sql = "select e.firstName from employee e INNER JOIN departmentmanagers dm ON e.departments_id = dm.departments_id Where e.users_id = ".$users_id;
-             
+    $sql = "select e.firstName from employee e INNER JOIN departmentmanagers dm ON e.departments_id = dm.departments_id Where e.users_id = ".$users_id;         
 
 			$m_data = $db->fetchRow($sql);
       $manager = $m_data['firstName'];
@@ -109,16 +105,14 @@ class User_IndexController extends Zend_Controller_Action
 //........................end..................................
 
 //displaying announcements
-        $ann = new user_Model_Announcements();
+        $ann = new User_Model_Announcements();
         $a_data = $ann->fetchAll($where = null,'id DESC','3 ,0')->toArray();
         $this->view->ann = $a_data;
 //....................end......................................
 
 //displaying punches
-        $punches = new user_Model_Timekeeping();
-        $p_data = $punches->fetchAll($where = null,'id DESC','7 ,0')->toArray(); //must be 7
-        // $c_date = explode(" ",$p_data[0]['punchIn']);
-        // $this->view->c_date = $c_date[0];
+        $punches = new User_Model_Timekeeping();
+        $p_data = $punches->fetchAll($where = null,'id DESC','7 ,0')->toArray(); 
        
         $this->view->punch = $p_data;
     
@@ -130,34 +124,35 @@ class User_IndexController extends Zend_Controller_Action
     public function insertAction(){
     $users_id = Zend_Auth::getInstance()->getIdentity()->id;
     
-    $emp = new user_Model_Employee();
+    $emp = new User_Model_Employee();
     $where = "users_id =". $users_id;
     $emp_data = $emp->fetchRow($where)->toArray(); 
     $emp_ID = $emp_data['ID'];
- 
-    $punches = new user_Model_Timekeeping();
-    $dd = new Zend_Date();
+
+   $punches = new User_Model_Timekeeping();
+   $p_data = $punches->fetchAll($where = "employee_ID=".$emp_ID,'id DESC','1 ,0')->toArray(); //must be 7
+   $dd = new Zend_Date();
 
       $data = array(
-        "punchIn" => $dd->get('YYYY-MM-dd HH:mm:ss'),
-        "employee_ID" => $emp_ID
+        "punchIn" => $dd->get('YYYY-MM-dd HH:mm:ss')
          );
- 
-      $punches->insert($data);
-      $this->_redirect('/user/index/');
+    $where = "id = " . $p_data[0]['id'];
+    $punches->update($data, $where);
+    $this->_redirect('/User/index/');
+
 }
 
 public function updateloutAction(){
   
     $users_id = Zend_Auth::getInstance()->getIdentity()->id;
     
-    $emp = new user_Model_Employee();
+    $emp = new User_Model_Employee();
     $where = "users_id =". $users_id;
     $emp_data = $emp->fetchRow($where)->toArray(); 
     $emp_ID = $emp_data['ID'];
    
-   $punches = new user_Model_Timekeeping();
-   $p_data = $punches->fetchAll($where = "employee_ID=".$emp_ID,'id DESC','1 ,0')->toArray(); //must be 7
+   $punches = new User_Model_Timekeeping();
+   $p_data = $punches->fetchAll($where = "employee_ID=". $emp_ID,'id DESC','1 ,0')->toArray(); //must be 7
    $dd = new Zend_Date();
 
       $data = array(
@@ -173,13 +168,13 @@ public function updateloutAction(){
     {
         $users_id = Zend_Auth::getInstance()->getIdentity()->id;
         
-        $emp = new user_Model_Employee();
+        $emp = new User_Model_Employee();
         $where = "users_id =". $users_id;
         $emp_data = $emp->fetchRow($where)->toArray(); 
         $emp_ID = $emp_data['ID'];
        
 
-       $punches = new user_Model_Timekeeping();
+       $punches = new User_Model_Timekeeping();
        $p_data = $punches->fetchAll($where = "employee_ID=".$emp_ID,'id DESC','1 ,0')->toArray(); //must be 7
        $dd = new Zend_Date();
 
@@ -195,12 +190,12 @@ public function updateloutAction(){
     {
         $users_id = Zend_Auth::getInstance()->getIdentity()->id;
         
-        $emp = new user_Model_Employee();
+        $emp = new User_Model_Employee();
         $where = "users_id =". $users_id;
         $emp_data = $emp->fetchRow($where)->toArray(); 
         $emp_ID = $emp_data['ID'];
        
-           $punches = new user_Model_Timekeeping();
+           $punches = new User_Model_Timekeeping();
            $p_data = $punches->fetchAll($where = "employee_ID=".$emp_ID,'id DESC','1 ,0')->toArray(); //must be 7
            $dd = new Zend_Date();
 
