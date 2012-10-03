@@ -1,1 +1,22 @@
-<?php echo $this->form; ?>
+<?php 
+if(!empty($this->request)){
+}
+else
+{
+	echo $this->form; 
+	?><button><a href="/Admin/hris/index/">Cancel</a></button>
+<?php
+}
+
+if(!empty($this->save)){
+echo "New Employee Added";
+}
+
+if(!empty($this->save_add)){
+echo "New Employee added. Add Another Employee";
+echo $this->form;
+?><button><a href="/Admin/hris/index/">Cancel</a></button>
+<?php }?>
+
+
+

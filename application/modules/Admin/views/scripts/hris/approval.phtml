@@ -1,4 +1,13 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Hris</b> and script/action name <b>approval</b></p>
-</div>
+<?php
+
+
+foreach($this->p_data as $value):
+echo "From : " .$value['from']." to ";
+echo "To : " .$value['to']."<br/>";
+echo "Reason for Leave:" .$value['reason']."<br/>";
+?><a href="/Admin/hris/leave-accepted/ID/<?php echo $value['ID']?>">Accept</a>
+<a href="/Admin/hris/leave-rejected/ID/<?php echo $value['ID']?>">Reject</a><br/>
+<?php
+endforeach;
+
+?>

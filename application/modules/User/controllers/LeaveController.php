@@ -12,32 +12,7 @@ class User_LeaveController extends Zend_Controller_Action
     {
        $form = new User_Form_Applyleave();
        $this->view->form = $form;
-      //  $users_id = Zend_Auth::getInstance()->getIdentity()->id;
-
-      //   $emp = new User_Model_Employee();
-      //   $where = "users_id =". $users_id;
-      //   $emp_data = $emp->fetchRow($where)->toArray(); 
-      //   $emp_ID = $emp_data['ID'];
-
-      //   if ($this->getRequest()->isPost() && $this->view->form->isValid($this->_getAllParams()))
-      //  {
-      //  		  $leavetype = $form->getValue('leavetype');
-      //       $from = $form->getValue('from');
-      //       $to = $form->getValue('to');
-      //       $reason = $form->getValue('reason');
-
-      //      $l_apply = new User_Model_Employeeleaves();
-      //      $where = "employee_ID=". $emp_ID;
-      //      $data = array(
-      //             "leavetypes_ID" => $leavetype,
-      //   					"from" => $from,
-      //   					"to" => $to,
-      //   					"reason" => $reason,
-      //   					"employee_ID" => $emp_ID
-      //            	);
-      //       $l_apply->insert($data,$where);
-
-      // }
+     
 
        $form2 = new User_Form_Leavehistory();
        $this->view->form2 = $form2;
