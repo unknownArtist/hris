@@ -1,0 +1,12 @@
+<?php
+
+
+foreach($this->emp_list as $value):
+echo "Employee No:" .$value['ID']."<br/>";
+echo "Name: " .$value['firstName']."  ".$value['LastName']."<br/>";
+?><a href="/Admin/hris/edit-employee/ID/<?php echo $value['ID']?>">Edit</a></br>
+
+<?php
+endforeach;
+
+?>

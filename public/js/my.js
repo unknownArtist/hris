@@ -1,19 +1,64 @@
 
 $(function(){
 
-	
+ 
+$("#h_rate").hide();
+
+$('#h_check').bind('change', function () {
+
+   if ($(this).is(':checked'))
+     $("#h_rate").show();
+   else
+     $("#h_rate").hide();
+
+});
+
+if($(".select option:selected").text() == "Date Range"){
+
+   			 $('#start').show();
+   			 $('label[for="start"]').show();
+   			 $('#end').show();
+   			 $('label[for="end"]').show();
+   			 $('#status').hide();
+   		   }
+if($(".select option:selected").text() == "Status"){
+
+   			 $('#start').hide();
+   			 $('label[for="start"]').hide();
+   			 $('#end').hide();
+   			 $('label[for="end"]').hide();
+   			 $('#status').show();
+   		   }
+   		   
 $('#datepicker').datepicker({
 
 	format: 'yyyy-mm-dd'
 		});
 	
+ 	 $('.select').change(function(){
+   	 	if($(".select option:selected").text() == "Date Range"){
+
+   			 $('#start').show();
+   			 $('label[for="start"]').show();
+   			 $('#end').show();
+   			 $('label[for="end"]').show();
+   			 $('#status').hide();
+   		   }
+        if($(".select option:selected").text() == "Status"){
+
+   			 $('#start').hide();
+   			 $('label[for="start"]').hide();
+   			 $('#end').hide();
+   			 $('label[for="end"]').hide();
+   			 $('#status').show();
+   		   }
+
+
+   	});
+
+
+
 });
-
-
-
-
-
-
 
 
 

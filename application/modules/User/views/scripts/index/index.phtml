@@ -31,33 +31,33 @@ endforeach;
 	$date = explode(" ", $p_value['punchIn']);
   if($date[0] == null){ 	
 echo $this->date_format;?>
-<a href="/User/index/insert/">
+<a id="p_in" class="li" href="/User/index/insert/">
        PunchIn
     </a>
-<a href="/User/index/updatelout/">
+<!-- <a id="l_out" class="li" href="/User/index/updatelout/">
        LunchOut
     </a>	
-<a href="/User/index/updatelin/">
+<a id="l_in" class="li" href="/User/index/updatelin/">
        LunchIn
     </a>
-<a href="/User/index/updatepout/">
-       PunchOut</a>
+<a id="p_out" class="li" href="/User/index/updatepout/">
+       PunchOut</a> -->
 <?php  }
 
 
  if($date[0] == $this->date_format){?>
 
 	<?php echo $date[0];?><br/>
-	<?php if($p_value['punchIn'] == null){?><a href="/user/index/insert/">
+	<?php if($p_value['punchIn'] == null){?><a id="p_in" class="li" href="/User/index/insert/">
        PunchIn
     </a><?php } echo $p_value['punchIn'];?><br/>
-	<?php if($p_value['lunchOut'] == null){?><a href="/user/index/updatelout/">
+	<?php if($p_value['lunchOut'] == null && $p_value['punchIn'] != null){?><a id="l_out" class="li" href="/User/index/updatelout/">
        LunchOut
     </a><?php } echo $p_value['lunchOut'];?><br/>
-	<?php if($p_value['lunchIn'] == null){?><a href="/user/index/updatelin/">
+	<?php if($p_value['lunchIn'] == null && $p_value['lunchOut'] != null){?><a id="l_in" class="li" href="/User/index/updatelin/">
        LunchIn
     </a><?php } echo $p_value['lunchIn'];?><br/>
-	<?php if($p_value['punchOut'] == null){?><a href="/user/index/updatepout/">
+	<?php if($p_value['punchOut'] == null && $p_value['lunchIn'] != null){?><a id="p_out" class="li" href="/User/index/updatepout/">
        PunchOut
     </a><?php } echo $p_value['punchOut'];?><br/><?php  
  } else{?>

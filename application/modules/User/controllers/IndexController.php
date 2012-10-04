@@ -130,7 +130,7 @@ class User_IndexController extends Zend_Controller_Action
     $emp_ID = $emp_data['ID'];
 
    $punches = new User_Model_Timekeeping();
-   $p_data = $punches->fetchAll($where = "employee_ID=".$emp_ID,'id DESC','1 ,0')->toArray(); //must be 7
+   $p_data = $punches->fetchAll($where = "employee_ID=".$emp_ID,'id DESC','1 ,0')->toArray(); 
    $dd = new Zend_Date();
 
       $data = array(
@@ -150,9 +150,9 @@ public function updateloutAction(){
     $where = "users_id =". $users_id;
     $emp_data = $emp->fetchRow($where)->toArray(); 
     $emp_ID = $emp_data['ID'];
-   
+
    $punches = new User_Model_Timekeeping();
-   $p_data = $punches->fetchAll($where = "employee_ID=". $emp_ID,'id DESC','1 ,0')->toArray(); //must be 7
+   $p_data = $punches->fetchAll($where = "employee_ID=".$emp_ID,'id DESC','1 ,0')->toArray(); 
    $dd = new Zend_Date();
 
       $data = array(

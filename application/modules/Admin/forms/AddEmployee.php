@@ -143,7 +143,6 @@ class Admin_Form_AddEmployee extends Zend_Form
                        //  'Secretary'=>'Secretary',
                        //  'Tambay'=>'Tambay',
                        //  'Others'=>'Others',
-
                        //  ));
 
             $salarytypes = new Admin_Model_SalaryType();
@@ -163,10 +162,15 @@ class Admin_Form_AddEmployee extends Zend_Form
                        //  'Hourly'=>'Hourly',
                        //  'Monthly'=>'Monthly'));
 
+          
+           
+         $h_check = new Zend_Form_Element_Checkbox('h_check');
+         $h_check->setAttribs(array('id'=>'h_check'));
            $hourly_rate        = new Zend_Form_Element_Text('h_rate');
            $hourly_rate->setLabel('Hourly Rate')
-                        ->addFilter('StripTags')
-                       ->setRequired(true);
+                        ->addFilter('StripTags');
+                      // ->setRequired(true);
+           $hourly_rate->setAttribs(array('id'=>'h_rate'));
 
             $teamtypes = new  User_Model_Teams();
 
@@ -284,9 +288,9 @@ class Admin_Form_AddEmployee extends Zend_Form
 
               ->addMultiOptions(array(
 
-                  'True' => 'True',
+                  1 => 'True',
 
-                  'False' => 'False'
+                  0 => 'False'
 
                   ));
 
@@ -296,9 +300,9 @@ class Admin_Form_AddEmployee extends Zend_Form
 
               ->addMultiOptions(array(
 
-                  'True' => 'True',
+                  1 => 'True',
 
-                  'False' => 'False'
+                  0 => 'False'
 
                   ));
         $h_app = new Zend_Form_Element_Radio('h_app');
@@ -307,9 +311,9 @@ class Admin_Form_AddEmployee extends Zend_Form
 
               ->addMultiOptions(array(
 
-                  'True' => 'True',
+                  1 => 'True',
 
-                  'False' => 'False'
+                  0 => 'False'
 
                   ));
 
@@ -319,9 +323,9 @@ class Admin_Form_AddEmployee extends Zend_Form
 
               ->addMultiOptions(array(
 
-                  'True' => 'True',
+                  1 => 'True',
 
-                  'False' => 'False'
+                  0 => 'False'
 
                   ));
 
@@ -331,11 +335,12 @@ class Admin_Form_AddEmployee extends Zend_Form
 
               ->addMultiOptions(array(
 
-                  'True' => 'True',
+                  1 => 'True',
 
-                  'False' => 'False'
+                  0 => 'False'
 
                   ));
+
 
         $sss = new Zend_Form_Element_Radio('sss');
 
@@ -343,9 +348,9 @@ class Admin_Form_AddEmployee extends Zend_Form
 
               ->addMultiOptions(array(
 
-                  'True' => 'True',
+                  1 => 'True',
 
-                  'False' => 'False'
+                  0 => 'False'
 
                   ));
 
@@ -356,9 +361,9 @@ class Admin_Form_AddEmployee extends Zend_Form
 
               ->addMultiOptions(array(
 
-                  'True' => 'True',
+                  1 => 'True',
 
-                  'False' => 'False'
+                  0 => 'False'
 
                   ));
 
@@ -395,6 +400,7 @@ class Admin_Form_AddEmployee extends Zend_Form
             $emp_position,
             $salary,
             $hourly_rate,
+            $h_check,
             $emp_team,
             $emp_dep,
             $b_salary,

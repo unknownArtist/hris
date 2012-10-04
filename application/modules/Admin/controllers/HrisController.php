@@ -276,8 +276,103 @@ class Admin_HrisController extends Zend_Controller_Action
       //$this->_redirect('/Admin/hris/approval/');
 
     }
+
+public function listEmployeeAction()
+{
+  $emp = new User_Model_Employee();
+  $emp_list = $emp->fetchAll($where = null,'ID DESC')->toArray(); 
+  $this->view->emp_list = $emp_list; 
 }
 
+     public function editEmployeeAction()
+    {
+      $form = new Admin_Form_EditEmployee();
+      $form->setMethod('post')->setAction( $this->getHelper('url')->url(array('controller' => 'hris', 'action' => 'edit-employee')) );
+        $this->view->form = $form;
+       if($this->getRequest()->isPost())
+        {
+             $formData = $this->getRequest()->getPost();
+         
+                if ($form->isValid($formData)) 
+                {
+            
+            $u_data = array(
+                              "userName" => $form->getValue('userName'),
+                              "email" => $form->getValue('email'),
+                              "role" => $form->getValue('role')
+                             );
+
+            $user = new Dashboard_Model_Login();
+            $where = "ID=" .$this->_request->getParam('ID');
+            $user->update($u_data,$where);
+           
+          
+            $date = new Zend_Date();
+           
+            $data = array(
+                  "ID" => $form->getValue('ID'),
+                  "firstName" => $form->getValue('firstName'),
+                  "middleName" => $form->getValue('middleName'),
+                  "LastName" => $form->getValue('LastName'),
+                  "nickName" => $form->getValue('nickName'),
+                  "spouseName" => $form->getValue('spouseName'),
+                  "gender" => $form->getValue('gender'),
+                  "startDate" => $date->get('YYYY-MM-dd'),
+                  "dateofBirth" => $form->getValue('dateofBirth'),
+                  "maritalStatus" => $form->getValue('maritalStatus'),
+                  "phone" => $form->getValue('phone'),
+                  "mobile" => $form->getValue('mobile'),
+                  "picture" => $form->getValue('picture'),
+                  "address" => $form->getValue('address'),
+                  "district" => $form->getValue('district'),
+                  "city" => $form->getValue('city'),
+                  "emergencyContactName" => $form->getValue('emergencyContactName'),
+                  "emergencyContactRelation" => $form->getValue('emergencyContactRelation'),
+                  "emergencyContactPhone" => $form->getValue('emergencyContactPhone'),
+                  "emergencyContactMobile" => $form->getValue('emergencyContactMobile'),
+                  "basic" => $form->getValue('basic'),
+                  "hourlyRate" => $form->getValue('hourlyRate'),
+                  "nonTaxableAllowences" => $form->getValue('nonTaxableAllowences'),
+                  "taxableAllowances" => $form->getValue('taxableAllowances'),
+                  "grossSalary" => $form->getValue('grossSalary'),
+                  //"OT" => $form->getValue('OT'),
+                  "HolidayAPP" => $form->getValue('h_app'),
+                  "SSS" => $form->getValue('SSS'),
+                  "health" => $form->getValue('health'),
+                  "excludeFromPayroll" => $form->getValue('excludeFromPayroll'),
+                  "Pagibig" => $form->getValue('Pagibig'),
+                  "positions_ID" => $form->getValue('positions_ID'),
+                  "employeetaxstatus_ID" => $form->getValue('employeetaxstatus_ID'),
+                  "epmloyeestatus_ID" => $form->getValue('epmloyeestatus_ID'),
+                  "employeesalarytype_ID" => $form->getValue('employeesalarytype_ID'),
+                  "teams_ID" => $form->getValue('teams_ID')
+                  );
+
+        $emp = new User_Model_Employee();
+        $where = "ID=" .$this->_request->getParam('ID');
+        $emp->update($data,$where);
+
+} 
+
+}
+ else{ 
+      $where = "ID=" .$this->_request->getParam('ID');                                               
+       $empObj= new User_Model_Employee(); 
+       $row=$empObj->fetchRow($where); 
+       $form->populate($row->toArray()); 
+      // $this->view->populate=$form; 
+    
+      $where = "id=" .$row['users_id'];                                               
+       $userObj= new Dashboard_Model_Login(); 
+       $row=$userObj->fetchRow($where); 
+       $form->populate($row->toArray()); 
+       $this->view->populate=$form; 
+ 
+                                                        
+                                                } 
+
+}
+}
 
 
 
