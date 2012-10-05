@@ -12,7 +12,9 @@ echo $this->day."<br/>";
 echo $this->date;
 
 
+
 $prt=0;
+
 
 ?><h4>Announcements </h4>
 <?php foreach($this->ann as $value):
@@ -20,19 +22,36 @@ echo $value['tittle']."<br/>";
 echo $value['date']."<br/>";
 echo $value['message']."<br/>";
 endforeach;
+
 ?>
 
 <h4> Recent Punches</h4><br/>
 	<div class="span2">Date<br/></div>
-	<div class="span1">PunchIn<br/></div>
-	<div class="span1">LunchOut<br/></div>
-	<div class="span1">LunchIn <br/></div>
-	<div class="span1">PunchOut<br/></div>
-	<div class="span1">Hours<br/></div>
+	<div class="span2">PunchIn<br/></div>
+	<div class="span2">LunchOut<br/></div>
+	<div class="span2">LunchIn <br/></div>
+	<div class="span2">PunchOut<br/></div>
 
-<?php foreach($this->punch as $p_value): 
-	
+	 <?php foreach($this->punch as $p_value): 
+
 	$date = explode(" ", $p_value['punchIn']);
+  if($date[0] == null){ 	
+echo $this->date_format;?>
+<a id="p_in" class="li" href="/User/index/insert/"> PunchIn
+    </a>
+<!-- <a id="l_out" class="li" href="/User/index/updatelout/">
+       LunchOut
+    </a>	
+<a id="l_in" class="li" href="/User/index/updatelin/">
+       LunchIn
+    </a>
+<a id="p_out" class="li" href="/User/index/updatepout/">
+       PunchOut</a> -->
+<?php  }
+
+
+ if($date[0] == $this->date_format){
+
 
 	$data = explode(" ", $p_value['punchIn']);
 	$data1 = explode(" ", $p_value['lunchOut']);
@@ -99,6 +118,27 @@ endforeach;
 	<div class="span1"><?php echo $data2[1];?></div>
 	<div class="span1"><?php echo $data3[1];?></div>
 	<div class="span1"><?php echo $hours;?></div>
+
+	<?php echo $date[0];?><br/>
+	<?php if($p_value['punchIn'] == null){?><a id="p_in" class="li" href="/User/index/insert/">
+       PunchIn
+    </a><?php } echo $p_value['punchIn'];?><br/>
+	<?php if($p_value['lunchOut'] == null && $p_value['punchIn'] != null){?><a id="l_out" class="li" href="/User/index/updatelout/">
+       LunchOut
+    </a><?php } echo $p_value['lunchOut'];?><br/>
+	<?php if($p_value['lunchIn'] == null && $p_value['lunchOut'] != null){?><a id="l_in" class="li" href="/User/index/updatelin/">
+       LunchIn
+    </a><?php } echo $p_value['lunchIn'];?><br/>
+	<?php if($p_value['punchOut'] == null && $p_value['lunchIn'] != null){?><a id="p_out" class="li" href="/User/index/updatepout/">
+       PunchOut
+    </a><?php } echo $p_value['punchOut'];?><br/><?php  
+ } else{?>
+	<?php echo $date[0];?><br/>
+	<?php echo $p_value['punchIn'];?><br/>
+	<?php echo $p_value['lunchOut'];?><br/>	
+	<?php echo $p_value['lunchIn'];?><br/>
+	<?php echo $p_value['punchOut'];?><br/>
+
 <?php
  } endforeach;?>
 

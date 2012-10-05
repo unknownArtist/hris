@@ -47,19 +47,33 @@ class Dashboard_IndexController extends Zend_Controller_Action
                                             $emp_ID = $emp_data['ID'];
 
                                               $punches = new User_Model_Timekeeping();
+
                                               $p_data = $punches->fetchRow($where = null,'id DESC','1 ,0')->toArray();
                                               $dd = new Zend_Date(); 
                 
                                               $date = explode(" ", $p_data['punchIn']);
                                           
+
+                                            
+                                            // $punches = new user_Model_Timekeeping();
+                                            $dd = new Zend_Date();
+
+
                                               $data = array(
                                                 //"punchIn" => $dd->get('YYYY-MM-dd HH:mm:ss'),
                                                 "employee_ID" => $emp_ID
                                                  );
+
                                           if($date[0] != $dd->get('YYYY-MM-dd') && $date[0] != null){ 
                                             
                                               $punches->insert($data);
                                         }
+
+                                         
+                                              $punches->insert($data);
+
+
+
                                    $this->_redirect('User');
                               
                               }else

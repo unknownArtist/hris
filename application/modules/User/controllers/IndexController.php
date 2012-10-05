@@ -112,8 +112,12 @@ class User_IndexController extends Zend_Controller_Action
 
 //displaying punches
         $punches = new User_Model_Timekeeping();
+
         $where = "employee_ID = ".$emp_data['ID'];
         $p_data = $punches->fetchAll($where,'id DESC','7 ,0')->toArray(); 
+
+        $p_data = $punches->fetchAll($where = null,'id DESC','7 ,0')->toArray(); 
+       
         $this->view->punch = $p_data;
     
  
@@ -140,12 +144,17 @@ class User_IndexController extends Zend_Controller_Action
     //               );          
     // $punches->insert($data);
 
-    $data = array(
+   $punches = new User_Model_Timekeeping();
+   $p_data = $punches->fetchAll($where = "employee_ID=".$emp_ID,'id DESC','1 ,0')->toArray(); 
+   $dd = new Zend_Date();
+
+      $data = array(
+
         "punchIn" => $dd->get('YYYY-MM-dd HH:mm:ss')
          );
     $where = "id = " . $p_data[0]['id'];
     $punches->update($data, $where);
-    
+
     $this->_redirect('/User/index/');
 
 }

@@ -347,6 +347,7 @@ public function listEmployeeAction()
                   "employeesalarytype_ID" => $form->getValue('employeesalarytype_ID'),
                   "teams_ID" => $form->getValue('teams_ID')
                   );
+<<<<<<< HEAD
 
         $emp = new User_Model_Employee();
         $where = "ID=" .$this->_request->getParam('ID');
@@ -418,7 +419,33 @@ public function employeehoursAction()
 
 
 
+=======
+>>>>>>> 93bfdfc0eb5847a6b45355af39407eae41fdaf76
 
+        $emp = new User_Model_Employee();
+        $where = "ID=" .$this->_request->getParam('ID');
+        $emp->update($data,$where);
+
+} 
+
+}
+ else{ 
+      $where = "ID=" .$this->_request->getParam('ID');                                               
+       $empObj= new User_Model_Employee(); 
+       $row=$empObj->fetchRow($where); 
+       $form->populate($row->toArray()); 
+      // $this->view->populate=$form; 
+    
+      $where = "id=" .$row['users_id'];                                               
+       $userObj= new Dashboard_Model_Login(); 
+       $row=$userObj->fetchRow($where); 
+       $form->populate($row->toArray()); 
+       $this->view->populate=$form; 
+ 
+                                                        
+                                                } 
+
+}
 }
 
 

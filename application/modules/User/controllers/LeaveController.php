@@ -64,6 +64,7 @@ if ($this->getRequest()->isPost() && $this->view->form2->isValid($this->_getAllP
 
  else{
    $start = $form2->getValue('start');
+<<<<<<< HEAD
    $end = $form2->getValue('end');
    
   $where = "`from` >=  '$start' and `to` <=  '$end'";
@@ -71,6 +72,15 @@ if ($this->getRequest()->isPost() && $this->view->form2->isValid($this->_getAllP
   $hl_data = $h_leave->fetchAll($where);
   $this->view->hl_data = $hl_data; 
   
+=======
+   $end = $form->getValue('end');
+  
+  // $where = "'from=$start' and 'to=$end'";
+  // $h_leave = new User_Model_Employeeleaves();
+  // $hl_data = $h_leave->fetchAll($where);
+  // $this->view->hl_data = $hl_data; 
+
+>>>>>>> 93bfdfc0eb5847a6b45355af39407eae41fdaf76
        }
      }
 
