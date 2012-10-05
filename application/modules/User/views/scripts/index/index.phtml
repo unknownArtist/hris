@@ -1,88 +1,108 @@
 
-<?php
-?>
-<div class="container-fluid">
-  <div class="row-fluid">
-  	
-  	<div class="span12">
-    
-    <div class="span2" ></div>
-    <div class="span6">
   	<?php 
-echo $this->Message."<br/>";?>
-<div class="span2"></div>
-<div class="span4"><?php
+echo $this->Message."<br/>";
 echo "Name :". $this->name."<br/>";
 echo "Team :" . $this->team."<br/>";
 echo "Manager :". $this->mngr."<br/>";
 
 echo "Shift :" . $this->s_in." to ";
 echo $this->s_out."<br/>";
-echo $this->s_day."<br/>";?>
-</div>																				   <?php //....end of span4.........?>
-<?php
+echo $this->s_day."<br/>";
 echo $this->day."<br/>";
-echo $this->date;?>
-</div>																					<?php //....end of span6.........?>
+echo $this->date;
 
 
-<div class="span4"><h4>Announcements </h4><br/>
+$prt=0;
+
+?><h4>Announcements </h4>
 <?php foreach($this->ann as $value):
 echo $value['tittle']."<br/>";
 echo $value['date']."<br/>";
 echo $value['message']."<br/>";
 endforeach;
 ?>
-</div>																					<?php //....end of span4.........?>
-</div>																					<?php //....end of span12.........?>
-</div>																				    <?php //....end of row-fluid......?>
 
-<div class="row-fluid"> 
+<h4> Recent Punches</h4><br/>
+	<div class="span2">Date<br/></div>
+	<div class="span1">PunchIn<br/></div>
+	<div class="span1">LunchOut<br/></div>
+	<div class="span1">LunchIn <br/></div>
+	<div class="span1">PunchOut<br/></div>
+	<div class="span1">Hours<br/></div>
 
-<div class="span2"></div>
-<div class="span10"><h4> Recent Punches</h4><br/>
-	<div class="span2">Date<br/> </div>
-	<div class="span2">PunchIn<br/> </div>
-	<div class="span2">LunchOut<br/> </div>
-	<div class="span2">LunchIn<br/> </div>
-	<div class="span2">PunchOut<br/> </div>
-
+<?php foreach($this->punch as $p_value): 
 	
-
- <?php foreach($this->punch as $p_value): ?>
-	<?php
 	$date = explode(" ", $p_value['punchIn']);
 
-	if($date[0] == $this->date_format){?>
-	<div class="span2"><?php echo $date[0];?><br/></div>
-	<div class="span2"><?php if($p_value['punchIn'] == null){?><div class="span2"><a href="/User/index/insert/">
-       PunchIn
-    </a></div><?php } echo $p_value['punchIn'];?><br/></div>
-	<div class="span2"><?php if($p_value['lunchOut'] == null){?><div class="span2"><a href="/User/index/updatelout/">
-       LunchOut
-    </a></div><?php } echo $p_value['lunchOut'];?><br/></div>	
-	<div class="span2"><?php if($p_value['lunchIn'] == null){?><div class="span2"><a href="/User/index/updatelin/">
-       LunchIn
-    </a></div><?php } echo $p_value['lunchIn'];?><br/></div>
-	<div class="span2"><?php if($p_value['punchOut'] == null){?><div class="span2"><a href="/User/index/updatepout/">
-       PunchOut
-    </a></div><?php } echo $p_value['punchOut'];?><br/></div><?php  
-}else{?>
-	<div class="span2"><?php echo $date[0];?><br/></div>
-	<div class="span2"><?php echo $p_value['punchIn'];?><br/></div>
-	<div class="span2"><?php echo $p_value['lunchOut'];?><br/></div>	
-	<div class="span2"><?php echo $p_value['lunchIn'];?><br/></div>
-	<div class="span2"><?php echo $p_value['punchOut'];?><br/></div>
+	$data = explode(" ", $p_value['punchIn']);
+	$data1 = explode(" ", $p_value['lunchOut']);
+	$data2 = explode(" ", $p_value['lunchIn']);
+	$data3 = explode(" ", $p_value['punchOut']);
+
+	$time = explode(":", $data[1]);
+	$time1 = explode(":", $data1[1]);
+	$time2 = explode(":", $data2[1]);
+	$time3 = explode(":", $data3[1]);
+
+	$minutes =(($time[0]*60)+$time[1]);
+	$minutes1 =(($time1[0]*60)+$time1[1]);
+	$minutes2 =(($time2[0]*60)+$time2[1]);
+	$minutes3 =(($time3[0]*60)+$time3[1]);
+
+	$hours1 = ($minutes3-$minutes) - ($minutes2-$minutes1);
+	$totalhours = intval($hours1/60);
+	$totalminutes = intval($hours1%60);
+	$hours = $totalhours.":".$totalminutes;
+
+
+  if($date[0] == null){?>
+  	</br>
+  	<?php //$prt=1;?>
+	<div class="span2"><?php echo $this->date_format;?></div>
+	<div class="span1"><a id="p_in" href="/User/index/insert/">PunchIn</a></div>
+	<?php  }
+
+ if($date[0] == $this->date_format){?>
+</br>
+	<div class="span2"><?php echo $date[0];?></div>
+	<?php// $prt=1;?>
+	<?php if($p_value['punchIn'] == null){?>
+			<div class="span1"><a id="p_in" href="/User/index/insert/">PunchIn</a></div>
+			<?php }  else{?>
+			<div class="span1"><?php echo $data[1];?></div>
+			<?php }?>
+
+	<?php if(($p_value['lunchOut'] == null)&&($p_value['punchIn'] != null)){?>
+			<div class="span1"><a id="l_out" href="/User/index/updatelout/">LunchOut</a></div>
+			<?php }  else{?>
+			<div class="span1"><?php echo $data1[1];?></div>
+			<?php }?>
+
+	<?php if(($p_value['lunchIn'] == null)&&($p_value['lunchOut'] != null)){?>
+			<div class="span1"><a id="l_in" href="/User/index/updatelin/">LunchIn</a></div>
+			<?php }  else{?>
+			<div class="span1"><?php echo $data2[1];?></div>
+			<?php }?>
+
+	<?php if(($p_value['punchOut'] == null)&&($p_value['lunchIn'] != null)){?>
+			<div class="span1"><a id="p_out" href="/User/index/updatepout/">PunchOut</a></div>
+			<?php }  else{?>
+			<div class="span1"><?php echo $data3[1];?></div>
+			<?php }?>
+	<div class="span1"><?php //echo $hours;?></div>
+			<?php  
+ } else{?>
+ 	</br>
+	<div class="span2"><?php echo $date[0];?></div>
+	<div class="span1"><?php echo $data[1];?></div>
+	<div class="span1"><?php echo $data1[1];?></div>
+	<div class="span1"><?php echo $data2[1];?></div>
+	<div class="span1"><?php echo $data3[1];?></div>
+	<div class="span1"><?php echo $hours;?></div>
 <?php
- }endforeach;?>
+ } endforeach;?>
 
-<?php
- ?>
-</div>																					<?php //....end of span10.........?>
-
-</div>																					<?php //....end of row-fluid...?>
-
-</div>																					<?php //....end of container-fluid....?>
+																			
 
 
 

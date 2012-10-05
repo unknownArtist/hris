@@ -1,0 +1,54 @@
+
+
+<form name="input" action="/Admin/Hris/employeehours" method="Post">
+From: <input type="text" name="from">
+To: <input type="text" name="to">
+<input type="submit" value="Submit">
+</form>
+
+
+<h4> Recent Punches</h4><br/>
+	<div class="span2">Date<br/></div>
+	<div class="span1">Name<br/></div>
+	<div class="span1">PunchIn<br/></div>
+	<div class="span1">LunchOut<br/></div>
+	<div class="span1">LunchIn <br/></div>
+	<div class="span1">PunchOut<br/></div>
+
+	<div class="span1">Hours<br/></div>
+	</br>
+
+<?php foreach($this->punch as $p_value): 
+	
+	$date = explode(" ", $p_value['punchIn']);
+
+	$data = explode(" ", $p_value['punchIn']);
+	$data1 = explode(" ", $p_value['lunchOut']);
+	$data2 = explode(" ", $p_value['lunchIn']);
+	$data3 = explode(" ", $p_value['punchOut']);
+
+	$time = explode(":", $data[1]);
+	$time1 = explode(":", $data1[1]);
+	$time2 = explode(":", $data2[1]);
+	$time3 = explode(":", $data3[1]);
+
+	$minutes =(($time[0]*60)+$time[1]);
+	$minutes1 =(($time1[0]*60)+$time1[1]);
+	$minutes2 =(($time2[0]*60)+$time2[1]);
+	$minutes3 =(($time3[0]*60)+$time3[1]);
+
+	$hours1 = ($minutes3-$minutes) - ($minutes2-$minutes1);
+	$totalhours = intval($hours1/60);
+	$totalminutes = intval($hours1%60);
+	$hours = $totalhours.":".$totalminutes;
+	?>
+
+	<div class="span2"><?php echo $date[0];?></div>
+	<div class="span1"><?php echo $p_value['firstName'];?></div>
+	<div class="span1"><?php echo $data[1];?></div>
+	<div class="span1"><?php echo $data1[1];?></div>
+	<div class="span1"><?php echo $data2[1];?></div>
+	<div class="span1"><?php echo $data3[1];?></div>
+	<div class="span1"><?php echo $hours;?></div>
+</br>
+<?php endforeach;?>

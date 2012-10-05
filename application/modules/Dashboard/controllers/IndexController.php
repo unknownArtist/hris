@@ -39,9 +39,30 @@ class Dashboard_IndexController extends Zend_Controller_Action
                                {
                                    $auth->getStorage()->write($authAdapter->getResultRowObject(array('id', 'userName','role')));
                                    
+                                     $users_id = Zend_Auth::getInstance()->getIdentity()->id;
+    
+                                            $emp = new User_Model_Employee();
+                                            $where = "users_id =". $users_id;
+                                            $emp_data = $emp->fetchRow($where)->toArray(); 
+                                            $emp_ID = $emp_data['ID'];
+
+                                              $punches = new User_Model_Timekeeping();
+                                              $p_data = $punches->fetchRow($where = null,'id DESC','1 ,0')->toArray();
+                                              $dd = new Zend_Date(); 
+                
+                                              $date = explode(" ", $p_data['punchIn']);
+                                          
+                                              $data = array(
+                                                //"punchIn" => $dd->get('YYYY-MM-dd HH:mm:ss'),
+                                                "employee_ID" => $emp_ID
+                                                 );
+                                          if($date[0] != $dd->get('YYYY-MM-dd') && $date[0] != null){ 
+                                            
+                                              $punches->insert($data);
+                                        }
                                    $this->_redirect('User');
-                               }
-                               else
+                              
+                              }else
                                 {
                                    $form->populate($formData);
                                    $this->view->SignInError = "Invalid Username or Password";

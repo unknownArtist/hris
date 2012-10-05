@@ -1,0 +1,14 @@
+<?php
+
+echo $this->form;
+echo $this->form2;
+
+foreach($this->hl_data as $value):
+echo "From : " .$value['from']." to ";
+echo "To : " .$value['to']."<br/>";
+echo "Reason for Leave:" .$value['reason']."<br/>";
+echo "Status : " .$value['status']."<br/>";
+echo "Reason : " .$value['StatusReason']."<br/>";
+endforeach;
+
+?>
